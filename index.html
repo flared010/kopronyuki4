@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Копро Ньюкич — Аниме Девушки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0a1a;
+      --card: #1a1229;
+      --accent: #ff2d95;
+      --accent2: #00f0ff;
+      --gold: #ffd700;
+      --text: #f5e6ff;
+      --muted: #b8a0d0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 45, 149, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 45, 149, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow-1 {
+      background: var(--accent);
+      top: -200px;
+      left: -100px;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .glow-2 {
+      background: var(--accent2);
+      bottom: -200px;
+      right: -100px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(40px, 30px); }
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: clamp(1.4rem, 5vw, 2.4rem);
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px rgba(255, 45, 149, 0.4);
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Products */
+    .products {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 45, 149, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255, 45, 149, 0.25);
+    }
+
+    .card.premium {
+      border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+    }
+
+    .card.premium:hover {
+      box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+    }
+
+    .badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      z-index: 5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.gold {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #1a1000;
+    }
+
+    .image-wrap {
+      height: 280px;
+      background: linear-gradient(135deg, #2a1a3e, #1a0f2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,45,149,0.2), transparent 60%);
+    }
+
+    .anime-face {
+      font-size: 120px;
+      line-height: 1;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+      animation: bounce 3s ease-in-out infinite;
+    }
+
+    .card:nth-child(2) .anime-face { animation-delay: 0.3s; }
+    .card:nth-child(3) .anime-face { animation-delay: 0.6s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      min-height: 72px;
+    }
+
+    .price {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .card.premium .price {
+      color: var(--gold);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ff6bb5);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.15);
+      transform: scale(1.02);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #ffd700, #ffaa00);
+      color: #1a1000;
+    }
+
+    .btn-gold:hover {
+      filter: brightness(1.1);
+      transform: scale(1.02);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 30px 20px 50px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1a1229;
+      border: 1px solid var(--accent);
+      color: white;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-weight: 600;
+      z-index: 100;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .products {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <header>
+    <div class="logo">КОПРО НЬЮКИЧ</div>
+    <p class="tagline">Твои любимые аниме-девушки. Быстро. Красиво. За рубли.</p>
+  </header>
+
+  <main class="products">
+    <!-- 1000 руб -->
+    <article class="card">
+      <div class="badge">Старт</div>
+      <div class="image-wrap">
+        <div class="anime-face">🎀</div>
+      </div>
+      <div class="card-body">
+        <h2>Милая Няшка</h2>
+        <p>Классическая вайфу в школьной форме. Улыбается, краснеет и зовёт тебя «семпай». Идеально для первого знакомства.</p>
+        <div class="price">1000 <span>₽</span></div>
+        <button class="btn btn-primary" onclick="buy('Милая Няшка', 1000)">Забрать</button>
+      </div>
+    </article>
+
+    <!-- 2000 руб -->
+    <article class="card">
+      <div class="badge">Хит</div>
+      <div class="image-wrap">
+        <div class="anime-face">💜</div>
+      </div>
+      <div class="card-body">
+        <h2>Готичная Цундере</h2>
+        <p>Чёрные чулки, сарказм и скрытая нежность. Иногда говорит «бака», но на самом деле уже твоя. Средний уровень опасности.</p>
+        <div class="price">2000 <span>₽</span></div>
+        <button class="btn btn-primary" onclick="buy('Готичная Цундере', 2000)">Забрать</button>
+      </div>
+    </article>
+
+    <!-- 5000 руб -->
+    <article class="card premium">
+      <div class="badge gold">VIP</div>
+      <div class="image-wrap">
+        <div class="anime-face">👑</div>
+      </div>
+      <div class="card-body">
+        <h2>Богиня Ятогами</h2>
+        <p>Легендарная вайфу высшего разряда. Персональный лор, анимация моргания, голосовые сообщения «оннии-чан» и вечная верность. Роскошь.</p>
+        <div class="price">5000 <span>₽</span></div>
+        <button class="btn btn-gold" onclick="buy('Богиня Ятогами', 5000)">Забрать VIP</button>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Копро Ньюкич · Все вайфу защищены авторским правом судьбы</p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    function buy(name, price) {
+      const toast = document.getElementById('toast');
+      toast.textContent = `✨ ${name} за ${price} ₽ добавлена в корзину!`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+  </script>
+</body>
+</html>
